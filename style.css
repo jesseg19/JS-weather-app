@@ -1,0 +1,101 @@
+body {
+  background-image: url(/img/cloudy-sunny-breaks.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  font-family: "Lobster", Arial, Helvetica, sans-serif;
+}
+p {
+  font-size: 1.7em;
+  font-weight: 400;
+}
+
+.nav {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+.nav #Logo {
+  margin: 30px 20px;
+}
+.nav .units {
+  display: inline-flex;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.nav p {
+  margin: 30px 100px;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.temp {
+  text-align: center;
+  margin-bottom: 90px;
+  font-size: 1.2em;
+}
+.temp p {
+  font-size: 4em;
+  margin-bottom: 10px;
+}
+.temp h3 {
+  opacity: 0.7;
+}
+
+#add-weather {
+  display: inline-flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  text-align: center;
+}
+
+/** --- HOURLY --- **/
+#carousel {
+  display: inline-flex;
+  width: 100vw;
+  justify-content: space-evenly;
+}
+.card {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 20px;
+  line-height: 0.8;
+}
+.carousel-next,
+.carousel-prev {
+  position: absolute;
+  top: 85vh;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 1000;
+  border: 1px solid black;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+.carousel-next {
+  right: 0;
+}
+.carousel-prev {
+  left: 0;
+}
+
+.carousel-next::after,
+.carousel-prev::after {
+  content: " ";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 54%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+.carousel-next::after {
+  left: 47%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
