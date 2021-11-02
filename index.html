@@ -9,54 +9,47 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="main.js"></script>
 
 </head>
 
 <body>
-    <div class="nav">
-        <h1 id="Logo">Weather</h1>
-
-        <div class="units">
-            <p id="C">°C</p>
-            <p id="F">°F</p>
-        </div>
-    </div>
 
     <main>
 
-        <div class="temp">
-            <p> <span id="current-temp">25</span>°C</p>
-            <h2>Current Temperature</h2>
-            <h3>Feels Like: <span id="feels-like">35</span>°C</h3>
-        </div>
-
-
-        <div id="add-weather">
-            <div class="weather-group">
-                <p> <span id="wind-speed">25</span>KM/H</p>
-                <h3 class="label">Wind Speed</h3>
+        <div class="container">
+            <div class="temp">
+                <p> <span id="current-temp">25</span>°C</p>
+                <h3>Feels Like: <span id="feels-like">35</span>°C</h3>
             </div>
 
-            <div class="weather-group">
-                <p id="wind-direction">E</p>
-                <h3 class="label">Wind Direction</h3>
-            </div>
 
-            <div class="weather-group">
-                <p> <span id="humidity">25</span>%</p>
-                <h3 class="label">Humidity</h3>
-            </div>
+            <div id="add-weather">
+                <div class="weather-group">
+                    <h3 class="label">Wind Speed</h3>
+                    <p> <span id="wind-speed">25</span>KM/H</p>
+                </div>
 
-            <div class="weather-group">
-                <p id="uv-index">3</p>
-                <h3 class="label">UV Index</h3>
-            </div>
+                <!-- <div class="weather-group">
+                    <h3 class="label">Wind Direction</h3>
+                    <p id="wind-direction">E</p>
+                </div>-->
 
-            <div class="weather-group">
-                <p> <span id="cloudiness">25</span>%</p>
-                <h3 class="label">Cloudiness</h3>
+                <div class="weather-group">
+                    <h3 class="label">Humidity</h3>
+                    <p> <span id="humidity">25</span>%</p>
+                </div>
+
+                <div class="weather-group">
+                    <h3 class="label">UV Index</h3>
+                    <p id="uv-index">3</p>
+                </div>
+
+                <div class="weather-group">
+                    <h3 class="label">Cloudiness</h3>
+                    <p> <span id="cloudiness">25</span>%</p>
+                </div>
             </div>
         </div>
 
@@ -68,37 +61,37 @@
                     <div class="card">
                         <img src="" alt="sunny icon">
                         <p class="time">11</p>
-                        <p>24°C</p>
-                        <p>Feels 25</p>
-                        <p>20%</p>
+                        <p class="hourly-temp">24°C</p>
+                        <p class="hourly-feels">Feels 25</p>
+                        <p class="pop">20%</p>
                     </div>
                     <div class="card">
                         <img src="" alt="sunny icon">
                         <p class="time">11</p>
-                        <p>24°C</p>
-                        <p>Feels 26</p>
-                        <p>20%</p>
+                        <p class="hourly-temp">24°C</p>
+                        <p class="hourly-feels">Feels 25</p>
+                        <p class="pop">20%</p>
                     </div>
                     <div class="card">
                         <img src="" alt="sunny icon">
                         <p class="time">11</p>
-                        <p>24°C</p>
-                        <p>Feels 26</p>
-                        <p>20%</p>
+                        <p class="hourly-temp">24°C</p>
+                        <p class="hourly-feels">Feels 25</p>
+                        <p class="pop">20%</p>
                     </div>
                     <div class="card">
                         <img src="" alt="sunny icon">
                         <p class="time">11</p>
-                        <p>24°C</p>
-                        <p>Feels 26</p>
-                        <p>20%</p>
+                        <p class="hourly-temp">24°C</p>
+                        <p class="hourly-feels">Feels 25</p>
+                        <p class="pop">20%</p>
                     </div>
                     <div class="card">
                         <img src="" alt="sunny icon">
                         <p class="time">11</p>
-                        <p>24°C</p>
-                        <p>Feels 26</p>
-                        <p>20%</p>
+                        <p class="hourly-temp">24°C</p>
+                        <p class="hourly-feels">Feels 25</p>
+                        <p class="pop">20%</p>
                     </div>
                     <div class="carousel-next"></div>
                     <div class="carousel-prev"></div>
