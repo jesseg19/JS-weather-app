@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       //get the current hour so I can have the correct hour displayed in hourly weather
       let currentHour = new Date().getHours();
-      let hour = currentHour.toLocaleString([], { hour12: true });
+      //let hour = currentHour.toLocaleString([], { hour12: true });
       //set the hour offset so I can chnage the time foward with buttons
-      let hourOffset = 1;
+      let hourlyData = 0;
 
       //click event for forward and back buttons
       hourlyNext.addEventListener("click", hourlyForward);
@@ -61,41 +61,51 @@ document.addEventListener("DOMContentLoaded", function (event) {
       function updateHourlyWeather() {
         //loop over the hourlyCards node list to set the hourly data intially
         for (let i = 0; i < hourlyCards.length; i++) {
-          console.log(hour);
-          if (currentHour + hourOffset >= 24) {
-            hourOffset = 0;
-            console.log("hey");
+          //console.log("current hour " + currentHour);
+
+          if (currentHour == 24 || currentHour == 12) {
+            currentHour = 12;
 
             if (AMPM === "PM") {
               AMPM = "AM";
             } else {
               AMPM = "PM";
             }
-            hourlyCards[i].children[1].innerText = 12 + AMPM;
-          } else if (currentHour + hourOffset > 12) {
+            hourlyCards[i].children[1].innerText = currentHour + AMPM;
+          } else if (currentHour > 12) {
             AMPM = "PM";
-            hourlyCards[i].children[1].innerText =
-              currentHour + i + hourOffset - 12 + AMPM;
-          } else {
+            hourlyCards[i].children[1].innerText = currentHour - 12 + AMPM;
+          } else if (currentHour < 12) {
             AMPM = "AM";
-            hourlyCards[i].children[1].innerText =
-              currentHour + i + hourOffset + AMPM;
+            hourlyCards[i].children[1].innerText = currentHour + AMPM;
           }
+
+          console.log("hey");
+          hourlyData += 1;
+          //console.log(hourlyData);
+          currentHour += 1;
           hourlyCards[i].children[2].innerText =
-            Math.round(data.hourly[i + hourOffset].temp) + "°C";
+            Math.round(data.hourly[hourlyData].temp) + "°C";
           hourlyCards[i].children[3].innerText =
-            "Feels  " +
-            Math.round(data.hourly[i + hourOffset].feels_like) +
-            "°C";
+            "Feels  " + Math.round(data.hourly[hourlyData].feels_like) + "°C";
           hourlyCards[i].children[4].innerText =
-            data.hourly[i + hourOffset].pop * 100 + "%";
+            data.hourly[hourlyData].pop * 100 + "%";
+          //console.log(data.hourly);
         }
+      }
+
+      function updateData() {
+        hourlyCards[i].children[2].innerText =
+          Math.round(data.hourly[i].temp) + "°C";
+        hourlyCards[i].children[3].innerText =
+          "Feels  " + Math.round(data.hourly[i].feels_like) + "°C";
+        hourlyCards[i].children[4].innerText = data.hourly[i].pop * 100 + "%";
       }
 
       //jump forward 5 hours when the forward button is pressed and display thr new data
       function hourlyForward() {
         AMPM = "AM";
-        hourOffset += 1;
+
         for (let i = 0; i < hourlyCards.length; i++) {
           updateHourlyWeather();
         }
@@ -103,38 +113,31 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       //go back by 5 hours and display the new data
       function hourlyBack() {
-        let AMPM = "AM";
-        hourOffset -= 1;
-        console.log("current Hour: " + currentHour);
-        console.log("Hour offset: " + hourOffset);
+        for (let i = 0; i < hourlyCards.length; i++) {
+          //console.log("current hour " + currentHour);
 
-        for (let i = hourlyCards.length; i == 0; i--) {
-          //loop over the hourlyCards node list to set the hourly data intially
-          if (currentHour + hourOffset >= 20) {
-            hourOffset = 0;
+          if (currentHour == 24 || currentHour == 12) {
+            currentHour = 12;
 
             if (AMPM === "PM") {
               AMPM = "AM";
             } else {
               AMPM = "PM";
             }
-            hourlyCards[i].children[1].innerText = 12 + AMPM;
-          } else if (currentHour + hourOffset > 12) {
+            hourlyCards[i].children[1].innerText = currentHour + AMPM;
+          } else if (currentHour > 12) {
             AMPM = "PM";
-            hourlyCards[i].children[1].innerText =
-              currentHour + hourOffset - 12 + AMPM;
-            console.log("hey");
-          } else {
+            hourlyCards[i].children[1].innerText = currentHour - 12 + AMPM;
+          } else if (currentHour < 12) {
             AMPM = "AM";
-            hourlyCards[i].children[1].innerText =
-              currentHour + hourOffset + AMPM;
+            hourlyCards[i].children[1].innerText = currentHour + AMPM;
           }
           hourlyCards[i].children[2].innerText =
-            Math.round(data.hourly[hourOffset].temp) + "°C";
+            Math.round(data.hourly[i].temp) + "°C";
           hourlyCards[i].children[3].innerText =
-            "Feels " + Math.round(data.hourly[hourOffset].feels_like) + "°C";
-          hourlyCards[i].children[4].innerText =
-            data.hourly[hourOffset].pop * 100 + "%";
+            "Feels  " + Math.round(data.hourly[i].feels_like) + "°C";
+          hourlyCards[i].children[4].innerText = data.hourly[i].pop * 100 + "%";
+          currentHour -= 1;
         }
 
         /*console.log(hourOffset);
