@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let hourlyCards = document.querySelectorAll(".card");
   let hourlyNext = document.querySelector(".carousel-next");
   let hourlyPrev = document.querySelector(".carousel-prev");
+  let AMPM = "";
 
   //fetch the api endpoint
   let call = fetch(url)
@@ -60,8 +61,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
       function updateHourlyWeather() {
         //loop over the hourlyCards node list to set the hourly data intially
         for (let i = 0; i < hourlyCards.length; i++) {
-          if (currentHour + hourOffset >= 20) {
+          console.log(hour);
+          if (currentHour + hourOffset >= 24) {
             hourOffset = 0;
+            console.log("hey");
 
             if (AMPM === "PM") {
               AMPM = "AM";
@@ -81,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           hourlyCards[i].children[2].innerText =
             Math.round(data.hourly[i + hourOffset].temp) + "°C";
           hourlyCards[i].children[3].innerText =
-            "Feels " +
+            "Feels  " +
             Math.round(data.hourly[i + hourOffset].feels_like) +
             "°C";
           hourlyCards[i].children[4].innerText =
@@ -91,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       //jump forward 5 hours when the forward button is pressed and display thr new data
       function hourlyForward() {
-        let AMPM = "AM";
+        AMPM = "AM";
         hourOffset += 1;
         for (let i = 0; i < hourlyCards.length; i++) {
           updateHourlyWeather();
