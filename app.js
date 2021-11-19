@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (event) {
   //Call the API
   const apiKey = "b29b8d284600575457c53d307f1c9e22";
-  const lat = 44.37408937000131;
-  const lon = -79.70726579049291;
+  const lat = 43.688822;
+  const lon = -79.411199;
   let units = "metric";
   let url =
     "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   //get the hourly elements
   let hourlyCards = document.querySelectorAll(".card");
-  let hourlyNext = document.querySelector(".carousel-next");
-  let hourlyPrev = document.querySelector(".carousel-prev");
+  // let hourlyNext = document.querySelector(".carousel-next");
+  // let hourlyPrev = document.querySelector(".carousel-prev");
 
   let changeTime = 0;
 
@@ -42,16 +42,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
       // --- CURRENT ISSUE, looping through and trying to put all the items into the cards in the dom, should just be storing them ---
       function main() {
-        for (let i = 0; i < data.hourly.length; i++) {
+        for (let i = 0; i < 5; i++) {
           //get the time as a 12 hour time
           let unixTime = data.hourly[i + changeTime].dt;
           let localDate = new Date(unixTime * 1000).toLocaleString();
           let localTime = localDate.substring(localDate.indexOf(" "));
 
+          currentTemp.innerText = Math.round(data.current.temp);
+          feelsLike.innerText = Math.round(data.current.feels_like);
+          windSpeed.innerText = Math.round(data.current.wind_speed);
+          humidity.innerText = data.current.humidity;
+          UVIndex.innerText = data.current.uvi;
+          cloudiness.innerText = data.current.clouds;
+
           //click event for forward and back buttons
-          hourlyNext.addEventListener("click", hourlyForward);
-          hourlyPrev.addEventListener("click", hourlyBack);
-          console.log(i);
+          // hourlyNext.addEventListener("click", hourlyForward);
+          // hourlyPrev.addEventListener("click", hourlyBack);
+          // console.log(i);
 
           //set the time on the cards
           hourlyCards[i].children[1].innerText = localTime;
@@ -71,19 +78,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
       }
 
-      function hourlyForward() {
-        changeTime += 1;
-        console.log(changeTime);
-        main();
-        //return changeTime;
-      }
+      // function hourlyForward() {
+      //   changeTime += 1;
+      //   console.log(changeTime);
+      //   main();
+      //   //return changeTime;
+      // }
 
-      function hourlyBack() {
-        let changeTime = 0;
-        changeTime -= 1;
-        main();
+      // function hourlyBack() {
+      //   let changeTime = 0;
+      //   changeTime -= 1;
+      //   main();
 
-        //return changeTime;
-      }
+      //   //return changeTime;
+      // }
     });
 });
